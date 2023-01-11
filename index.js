@@ -5,13 +5,20 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-app.use(cors({ 
-    origin: 'https://mongodb-frontend.netlify.app' 
+app.use(cors({
+    origin: '*'
 }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send({ "Server Status:": "Server is running :)" })
+});
+
+app.options('/movies', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.end();
 });
 
 app.get('/movies', async (req, res) => {
