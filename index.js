@@ -17,9 +17,10 @@ app.get('/movies', async (req, res) => {
     try {
         const key = req.query.key;
         const val = req.query.value;
-        console.log(key + " " + val);
+
         const database = client.db('sample_mflix');
         const movies = database.collection('movies');
+        
         const cursor = await movies.find({ year: parseInt(val) }).toArray();
         res.json(cursor);
     } finally {
