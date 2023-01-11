@@ -5,8 +5,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send({ "Server Status:": "Server is running :)" })
@@ -29,9 +29,8 @@ app.get('/movies', async (req, res) => {
 
 app.get('/test', (req, res) => {
     const body = req.query;
-    const param = req.params
     console.log(body);
-    console.log(param);
+    res.json(body);
 })
 
 const port = 5000;

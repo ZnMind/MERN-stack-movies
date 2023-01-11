@@ -15,7 +15,7 @@ function App() {
   }
 
   const getMovies = () => {
-    fetch(`http://localhost:5000/movies?key=year&value=${year}`)
+    fetch(`https://mern-stack-movies.vercel.app/movies?key=year&value=${year}`)
       .then(res => res.json())
       .then(details => {
         setData(details);
@@ -45,32 +45,48 @@ function App() {
           ? <p>{message}</p>
           : data.map((details, index) => (
             <div key={index} className='card'>
-              <h4>{details.title}</h4>
-              <p>{details.released ? `Date: ${details.released.split("-")[1]}/${details.released.split("-")[2].split("T")[0]}` : ""}</p>
 
-              {/* All of these ternary operators are checking for undefineds in each movie object */}
+              <h4>{details.title}</h4>
+
+              {/* All of these ternary operators are checking for undefined in each movie object */}
+              <p>{
+                details.released
+                  ? `Date: ${details.released.split("-")[1]}/${details.released.split("-")[2].split("T")[0]}`
+                  : ""
+              }</p>
+
               {
                 details.tomatoes
-                  ? details.tomatoes.boxOffice ? <p>{`Box Office: ${details.tomatoes.boxOffice}`}</p> : ""
+                  ? details.tomatoes.boxOffice
+                    ? <p>{`Box Office: ${details.tomatoes.boxOffice}`}</p>
+                    : ""
                   : ""
               }
+
               <p>{
                 details.tomatoes
-                  ? details.tomatoes.critic ? `Ratings - IMDB: ${details.imdb.rating} / Tomatoes: ${details.tomatoes.critic.meter}` : `Ratings - IMDB: ${details.imdb.rating}`
+                  ? details.tomatoes.critic
+                    ? `Ratings - IMDB: ${details.imdb.rating} / Tomatoes: ${details.tomatoes.critic.meter}`
+                    : `Ratings - IMDB: ${details.imdb.rating}`
                   : `Ratings - IMDB: ${details.imdb.rating}`
               }</p>
+
               <p>{`Awards: ${details.awards.text}`}</p>
+
               <p>{
                 details.cast
                   ? `Cast: ${details.cast.join(', ')}`
                   : ""
               }</p>
+
               <img src={details.poster} alt='* No movie poster *' className='poster'></img>
+              
               {
                 details.fullplot
                   ? <p>{details.fullplot}</p>
                   : <p>* Description not available *</p>
               }
+
             </div>
           ))}
       </div>
