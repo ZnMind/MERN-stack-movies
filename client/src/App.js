@@ -15,7 +15,7 @@ function App() {
   }
 
   const getMovies = () => {
-    fetch(`https://mern-stack-movies.vercel.app/movies?key=year&value=${year}`)
+    fetch(`https://mern-stack-movies.vercel.app/movies/${year}`)
       .then(res => res.json())
       .then(details => {
         setData(details);
