@@ -5,7 +5,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: '*' }));
+app.use(cors({ 
+    origin: 'https://mongodb-frontend.netlify.app' 
+}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -20,7 +22,7 @@ app.get('/movies', async (req, res) => {
 
         const database = client.db('sample_mflix');
         const movies = database.collection('movies');
-        
+
         const cursor = await movies.find({ year: parseInt(val) }).toArray();
         res.json(cursor);
     } finally {
