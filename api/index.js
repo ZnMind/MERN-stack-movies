@@ -5,10 +5,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 app.use(cors({
     origin: '*'
 }));
-app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send({ "Server Status:": "Server is running :)" })
