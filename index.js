@@ -32,7 +32,7 @@ app.get('/movies/:year?', async (req, res) => {
         const movies = database.collection('movies');
 
         const cursor = await movies.find({ year: parseInt(year) }).toArray();
-        res.json(cursor);
+        res.send(cursor);
     } finally {
         await client.close();
     }
