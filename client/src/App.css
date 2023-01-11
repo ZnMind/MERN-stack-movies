@@ -1,0 +1,44 @@
+body {
+  background-color: lightgray;
+}
+
+.App {
+  text-align: center;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  margin-bottom: 1em;
+  margin-top: 1em;
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 30vw;
+  border: 1px solid black;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  padding: 1em;
+  background-color: white;
+}
+
+.poster {
+  height: 50vh;
+  box-shadow: 5px 2px 0.5em black;
+}
+
+.invalidImg {
+  color: green;
+}
