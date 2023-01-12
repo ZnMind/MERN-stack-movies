@@ -83,7 +83,7 @@ function App() {
               
               {
                 details.fullplot
-                  ? <p>{details.fullplot}</p>
+                  ? <p className='card-bottom'>{details.fullplot}</p>
                   : <p>* Description not available *</p>
               }
 

@@ -30,8 +30,12 @@ input {
   margin-left: 0.5em;
   margin-right: 0.5em;
   margin-bottom: 1em;
-  padding: 1em;
+  padding: 0.5em;
   background-color: white;
+}
+
+.card-bottom {
+  padding: 1em;
 }
 
 .poster {

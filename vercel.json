@@ -6,16 +6,10 @@
             "use": "@now/node"
         }
     ],
-    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-    "headers": [
+    "routes": [
         {
-          "source": "/(.*)",
-          "headers": [
-            {
-              "key": "access-control-allow-origin",
-              "value": "*"
-            }
-          ]
+            "src": "/(.*)",
+            "dest": "index.js"
         }
-      ]
+    ]
 }
