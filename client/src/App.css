@@ -45,7 +45,6 @@ input {
 
 @media screen and (max-width: 480px) {
   .card {
-    color: blue;
     width: 90vw;
     border: 1px solid black;
     margin-left: 0.5em;
