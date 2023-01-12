@@ -43,6 +43,26 @@ input {
   box-shadow: 5px 2px 0.5em black;
 }
 
-.invalidImg {
-  color: green;
+@media screen and (max-width: 480px) {
+  .card {
+    color: blue;
+    width: 90vw;
+    border: 1px solid black;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    background-color: white;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .poster {
+    height: 40vh;
+    box-shadow: 5px 2px 0.5em black;
+  }
 }
