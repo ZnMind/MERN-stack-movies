@@ -46,12 +46,11 @@ function App() {
       <p>Search below by year and top movies from that time period will be pulled from the database.</p>
 
       <div className='inputs'>
-        <input onChange={handleYear} placeholder='Year (1893 - 2016)'></input>
-        <button onClick={getMovies}>Search</button>
+        <input onChange={handleYear} placeholder='Year (1893 - 2015)'></input>
+        <button className='button' onClick={getMovies}>Search</button>
       </div>
 
       <h4>{year ? `Year: ${year} - Movies: ${data.length}` : ""}</h4>
-
 
       <div className='arrow-box'>
         <div className='select'>
@@ -71,7 +70,6 @@ function App() {
           ? <p>{message}</p>
           : data.map((details, index) => (
             <div key={index} className='card'>
-              <p>{index + 1}</p>
               <h4>{details.title}</h4>
 
               {/* All of these ternary operators are checking for undefined in each movie object */}
