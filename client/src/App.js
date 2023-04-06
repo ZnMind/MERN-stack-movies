@@ -5,9 +5,13 @@ function App() {
   const [data, setData] = useState([]);
   const [year, setYear] = useState('2009');
   const [message, setMessage] = useState('');
+  const [page, setPage] = useState(1);
+  const [amount, setAmount] = useState(15);
+  const [render, setRender] = useState(false);
 
   useEffect(() => {
     getMovies();
+    setTimeout(() => setRender(true), 2000);
   }, []);
 
   const handleYear = event => {
@@ -19,11 +23,19 @@ function App() {
       .then(res => res.json())
       .then(details => {
         setData(details);
-        setMessage("Try a different year: Some years don't have movies!")
+        setMessage("Try a different year: Some years don't have movies!");
+        setPage(1);
       })
       .catch(err => {
         console.log(err);
       })
+  }
+
+  const handleAmount = e => {
+    let currentPage = amount * page - amount + 1;
+    let newPage = Math.floor((currentPage / e.target.value) + 1);
+    setAmount(e.target.value)
+    setPage(newPage);
   }
 
   return (
@@ -40,12 +52,26 @@ function App() {
 
       <h4>{year ? `Year: ${year} - Movies: ${data.length}` : ""}</h4>
 
+
+      <div className='arrow-box'>
+        <div className='select'>
+          <label htmlFor='results'>Results per page: </label>
+          <select onChange={handleAmount}>
+            <option value={15} defaultValue={15}>15</option>
+            <option value={30}>30</option>
+          </select>
+        </div>
+        <div className={`arrow ${page === 1 ? 'disabled' : 'arrow-left'}`} onClick={() => setPage(page - 1)}></div>
+        <p style={{ marginLeft: '1em', marginRight: '1em' }}>{`${page * amount - amount + 1} - ${page * amount}`}</p>
+        <div className={`arrow ${page === Math.ceil(data.length / amount) ? 'disabled' : 'arrow-right'}`} onClick={() => setPage(page + 1)}></div>
+      </div>
+
       <div className='card-container'>
         {data.length === 0
           ? <p>{message}</p>
           : data.map((details, index) => (
             <div key={index} className='card'>
-
+              <p>{index + 1}</p>
               <h4>{details.title}</h4>
 
               {/* All of these ternary operators are checking for undefined in each movie object */}
@@ -80,7 +106,7 @@ function App() {
               }</p>
 
               <img src={details.poster} alt='* No movie poster *' className='poster'></img>
-              
+
               {
                 details.fullplot
                   ? <p className='card-bottom'>{details.fullplot}</p>
@@ -88,8 +114,23 @@ function App() {
               }
 
             </div>
-          ))}
+          )).slice(page * amount - amount, page * amount)}
       </div>
+
+      {render ?
+        <div className='arrow-box'>
+        <div className='select'>
+          <label htmlFor='results'>Results per page: </label>
+          <select onChange={handleAmount}>
+            <option value={15} defaultValue={15}>15</option>
+            <option value={30}>30</option>
+          </select>
+        </div>
+        <div className={`arrow ${page === 1 ? 'disabled' : 'arrow-left'}`} onClick={() => setPage(page - 1)}></div>
+        <p style={{ marginLeft: '1em', marginRight: '1em' }}>{`${page * amount - amount + 1} - ${page * amount}`}</p>
+        <div className={`arrow ${page === Math.ceil(data.length / amount) ? 'disabled' : 'arrow-right'}`} onClick={() => setPage(page + 1)}></div>
+      </div>
+      : ""}
 
     </div>
   );

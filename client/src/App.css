@@ -27,6 +27,7 @@ input {
 .card {
   width: 30vw;
   border: 1px solid black;
+  border-radius: 5px;
   margin-left: 0.5em;
   margin-right: 0.5em;
   margin-bottom: 1em;
@@ -41,6 +42,49 @@ input {
 .poster {
   height: 50vh;
   box-shadow: 5px 2px 0.5em black;
+}
+
+.arrow-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}
+
+.arrow {
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.arrow-left {
+  border: none;
+  border-left: 6px solid rgb(112, 76, 182);
+  border-top: 6px solid rgb(112, 76, 182);
+  border-radius: 10%;
+  transform: rotate(-45deg);
+}
+
+.arrow-right {
+  border: none;
+  border-right: 6px solid rgb(112, 76, 182);
+  border-top: 6px solid rgb(112, 76, 182);
+  border-radius: 10%;
+  transform: rotate(45deg);
+}
+
+.select {
+  position: absolute;
+  left: 2vw;
 }
 
 @media screen and (max-width: 480px) {
@@ -63,5 +107,16 @@ input {
   .poster {
     height: 40vh;
     box-shadow: 5px 2px 0.5em black;
+  }
+
+  .arrow-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .select {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1em;
   }
 }
